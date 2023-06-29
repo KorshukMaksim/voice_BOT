@@ -21,7 +21,7 @@ aiogram, torch, vosk, silero, num2words, ffmpeg
 Клонируйте репозиторий и перейдите в него в командной строке:
 
 ```
-git clone https://github.com/
+git clone https://github.com/KorshukMaksim/voice_BOT.git
 cd voice_bot
 ```
 
