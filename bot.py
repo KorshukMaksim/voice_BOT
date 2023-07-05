@@ -47,24 +47,24 @@ async def cmd_test(message: types.Message):
     await message.answer("Test")
 
 
-# Хэндлер на получение текста
-@dp.message_handler(content_types=[types.ContentType.TEXT])
-async def cmd_text(message: types.Message):
-    """
-    Обработчик на получение текста
-    """
-    await message.reply("Текст получен")
+# Хэндлер на получение текста( если нужно, что бы  бот переводил текст и голосовое, расхешировать.)
+#@dp.message_handler(content_types=[types.ContentType.TEXT])
+#async def cmd_text(message: types.Message):
+ #   """
+  #  Обработчик на получение текста
+   # """
+    #await message.reply("Текст получен")
 
-    out_filename = tts.text_to_ogg(message.text)
+   # out_filename = tts.text_to_ogg(message.text)
 
     # Отправка голосового сообщения
-    path = Path("", out_filename)
-    voice = InputFile(path)
-    await bot.send_voice(message.from_user.id, voice,
-                         caption="Ответ от бота")
+    #path = Path("", out_filename)
+    #voice = InputFile(path)
+    #await bot.send_voice(message.from_user.id, voice,
+     #                    caption="Ответ от бота")
 
     # Удаление временного файла
-    os.remove(out_filename)
+    #os.remove(out_filename)
 
 
 # Хэндлер на получение голосового и аудио сообщения
