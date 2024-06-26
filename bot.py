@@ -8,6 +8,11 @@ from pathlib import Path
 
 from aiogram import Bot, Dispatcher, executor, types
 from aiogram.types.input_file import InputFile
+
+
+import requests
+import time
+
 from dotenv import load_dotenv
 
 from stt import STT
@@ -15,7 +20,7 @@ from tts import TTS
 
 load_dotenv()
 
-TELEGRAM_TOKEN = "" #  полученный токен
+TELEGRAM_TOKEN = "5994744911:AAGwt4LtBmHp3M6-0JSwQnrGRCX3w0cZjq0" #  полученный токен
 
 bot = Bot(token=TELEGRAM_TOKEN)  # Объект бота
 dp = Dispatcher(bot)  # Диспетчер для бота
@@ -47,24 +52,24 @@ async def cmd_test(message: types.Message):
     await message.answer("Test")
 
 
-# Хэндлер на получение текста( если нужно, что бы  бот переводил текст и голосовое, расхешировать.)
-#@dp.message_handler(content_types=[types.ContentType.TEXT])
-#async def cmd_text(message: types.Message):
- #   """
-  #  Обработчик на получение текста
-   # """
-    #await message.reply("Текст получен")
+# # Хэндлер на получение текста( если нужно, что бы  бот переводил текст и голосовое, расхешировать.)
+# @dp.message_handler(content_types=[types.ContentType.TEXT])
+# async def cmd_text(message: types.Message):
+# #   """
+#    #  Обработчик на получение текста
+#     # """
+#      await message.reply("Текст получен")
+#
+#      out_filename = tts.text_to_ogg(message.text)
+#
+#      # Отправка голосового сообщения
+#      path = Path("", out_filename)
+#      voice = InputFile(path)
+#      await bot.send_voice(message.from_user.id, voice,
+#                          caption="Ответ от бота")
 
-   # out_filename = tts.text_to_ogg(message.text)
-
-    # Отправка голосового сообщения
-    #path = Path("", out_filename)
-    #voice = InputFile(path)
-    #await bot.send_voice(message.from_user.id, voice,
-     #                    caption="Ответ от бота")
-
-    # Удаление временного файла
-    #os.remove(out_filename)
+# Удаление временного файла
+#os.remove(out_filename)
 
 
 # Хэндлер на получение голосового и аудио сообщения
@@ -85,7 +90,7 @@ async def voice_message_handler(message: types.Message):
     elif message.content_type == types.ContentType.DOCUMENT:
         file_id = message.document.file_id
     else:
-        await message.reply("Формат документа не поддерживается")
+        #await message.reply("Формат документа не поддерживается")
         return
 
     file = await bot.get_file(file_id)
@@ -109,3 +114,5 @@ if __name__ == "__main__":
         executor.start_polling(dp, skip_updates=True)
     except (KeyboardInterrupt, SystemExit):
         pass
+
+
